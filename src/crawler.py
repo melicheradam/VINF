@@ -10,16 +10,16 @@ import os
 BASE_URL = "https://en.wikipedia.org/wiki/"
 
 
-def load_state() -> dict:
+def load_state(dir_path) -> dict:
     data = {}
-    for file in glob.glob("data/htmls/*"):
+    for file in glob.glob(f"{dir_path}/htmls/*"):
         with open(file, "r") as f:
             fname = os.path.basename(file).replace(".html", "")
             data[fname] = f.read()
 
     return data
 
-def save_state(data: dict):
+def save_state(data: dict, dir_path):
 
     print(f"Saving state...")
 
@@ -27,7 +27,7 @@ def save_state(data: dict):
 
     for fname, html_data in data.items():
         if not os.path.exists(f"data/htmls/{fname}.html"):
-            with open(f"data/htmls/{fname}.html", "w") as f:
+            with open(f"{dir_path}/htmls/{fname}.html", "w") as f:
                 f.write(html_data)
                 count += 1
 

@@ -29,9 +29,9 @@ ELEMENT_REGEX_MAP = {
     #'table': r'<table .*?>(.*?)</table>',
 }
 
-def clean_htmls():
+def clean_htmls(dir_path):
 
-    files = glob.glob("data/htmls/*")
+    files = glob.glob(f"{dir_path}/htmls/*")
     total = len(files)
 
     for idx, file in enumerate(files):
@@ -50,7 +50,7 @@ def clean_htmls():
         cleaned_text = re.sub(r'&amp;', '', cleaned_text)
         cleaned_text = re.sub(r'\[  edit  \]', '', cleaned_text)
         
-        with open(f"data/parsed/{fname}.txt", "w") as f:
+        with open(f"{dir_path}/parsed/{fname}.txt", "w") as f:
             f.write(cleaned_text)
         
         print(f"Parsed {idx + 1} out of {total} files", end="\r")
@@ -58,15 +58,15 @@ def clean_htmls():
     print(f"Parsed {idx + 1} out of {total} files")
 
 
-def clean_xml_spark():
+def clean_xml_spark(dir_path):
     
     #print(spark)
     #print(spark.sparkContext.getConf().getAll())
     spark.sparkContext.setLogLevel('WARN')
 
-    files = glob.glob("data/xmls/*")
+    files = glob.glob(f"{dir_path}/xmls/*")
     total = len(files)
-
+    idx = 0
     for idx, file in enumerate(files):
 
         # loading the XML data
@@ -110,7 +110,7 @@ def clean_xml_spark():
 
         # Writing the output into a CSV file
         # repartition(1) to write the output into a single file
-        df.repartition(1).write.csv("data/spark-parsed/", mode="append")
+        df.repartition(1).write.csv(f"{dir_path}/spark-parsed/", mode="append")
 
         print(f"Parsed {idx + 1} out of {total} files", end="\r")
     

@@ -1,5 +1,6 @@
 from src import crawler, parser, indexer
 import argparse
+import os
 
 OPERATORS = ["=", ">", "<"]
 
@@ -13,6 +14,13 @@ HELP_STR = """
     \t s - search
     \t q - quit
 """
+
+def create_dir_structure():
+    os.makedirs("data/htmls", exist_ok=True)
+    os.makedirs("data/xmls", exist_ok=True)
+    os.makedirs("data/parsed", exist_ok=True)
+    os.makedirs("data/spark-parsed", exist_ok=True)
+    os.makedirs("data/index", exist_ok=True)
 
 def main():
     argparser = argparse.ArgumentParser(description='A simple script with command-line arguments.')

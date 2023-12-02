@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
+  <siteinfo>
+    <sitename>Sample Wikipedia</sitename>
+    <base>http://sample.wikipedia.org/wiki/Main_Page</base>
+    <generator>MediaWiki 1.36.0</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <!-- Add more namespaces as needed -->
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>Sample_Article</title>
+    <ns>0</ns>
+    <id>1</id>
+    <revision>
+      <id>123456789</id>
+      <parentid>0</parentid>
+      <timestamp>2023-01-01T12:34:56Z</timestamp>
+      <contributor>
+        <username>TestUser</username>
+        <id>12345</id>
+      </contributor>
+      <comment>Initial version</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve">
+'''This is a sample article
+      </text>
+      <sha1>abcdef1234567890abcdef1234567890abcdef12</sha1>
+    </revision>
+  </page>
+</mediawiki>

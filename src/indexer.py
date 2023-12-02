@@ -22,15 +22,13 @@ from org.apache.lucene.util import NumericUtils
 
 from java.io import File
 
-os.makedirs("data/index", exist_ok=True)
-
 print(lucenevm, "lucene version: ", lucene.VERSION)
 
-_index_directory = FSDirectory.open(File("data/index/").toPath())
 
-def index_cleaned_data():
+def index_cleaned_data(dir_path):
+    _index_directory = FSDirectory.open(File(f"{dir_path}/index/").toPath())
 
-    files = glob.glob("data/parsed/*")
+    files = glob.glob(f"{dir_path}/parsed/*")
     total = len(files)
 
     analyzer = EnglishAnalyzer()
@@ -67,9 +65,10 @@ STARBOX_FIELDS_REGEX = {
 }
 
 
-def index_cleaned_spark_data():
+def index_cleaned_spark_data(dir_path):
+    _index_directory = FSDirectory.open(File(f"{dir_path}/index/").toPath())
 
-    files = glob.glob("data/spark-parsed/*.csv")
+    files = glob.glob(f"{dir_path}/spark-parsed/*.csv")
     total = len(files)
 
     analyzer = EnglishAnalyzer()
@@ -134,8 +133,10 @@ def index_cleaned_spark_data():
     writer.close()
 
 
-def search_indexed_data(field, term, operator):
+def search_indexed_data(field, term, operator, dir_path):
     # searching
+    _index_directory = FSDirectory.open(File(f"{dir_path}/index/").toPath())
+
     field = field.upper()
     searcher = IndexSearcher(DirectoryReader.open(_index_directory))
 
