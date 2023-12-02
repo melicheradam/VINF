@@ -50,13 +50,13 @@ def main():
         elif command == "c":
             crawler.crawl_from('List_of_largest_known_stars')
         elif command == "p":
-            parser.clean_htmls()
+            parser.clean_htmls("data")
         elif command == "sp":
-            parser.clean_xml_spark()
+            parser.clean_xml_spark("data")
         elif command == "i":
-            indexer.index_cleaned_data()
+            indexer.index_cleaned_data("data")
         elif command == "si":
-            indexer.index_cleaned_spark_data()
+            indexer.index_cleaned_spark_data("data")
         elif command == "s":
             while True:
                 if not args.command:
@@ -71,7 +71,7 @@ def main():
                         opidx = search_term.find(operator)
                         if opidx != -1:
                             field, term = search_term[:opidx], search_term[opidx + 1:]
-                            indexer.search_indexed_data(field, term, operator)
+                            indexer.search_indexed_data(field, term, operator, "data")
                             break
                 else:
                     break
